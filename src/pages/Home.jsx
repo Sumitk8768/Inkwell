@@ -1,6 +1,11 @@
 import Articles from "../components/Articles";
+import { useContext, useState } from "react";
+import { Article } from "../context/ArticleData";
 
 const Home = () => {
+
+  let {articleInfo, setArticleInfo} = useContext(Article)
+
   return (
     <div className="flex flex-col justify-center items-center ">
       <h1 className="text-5xl w-fit mx-auto font-bold mt-10">
@@ -15,13 +20,9 @@ const Home = () => {
         <h3 className="mt-10 font-semibold text-2xl">Latest Articles</h3>
 
       <div className="mt-6 flex flex-wrap gap-8 ">
-           <Articles />
-           <Articles />
-           <Articles />
-             <Articles />
-           <Articles />
-           <Articles />
-           
+           {articleInfo.map((e)=>
+           <Articles key={e.id}  info={e}/>
+           )}
       </div>
       </div>
     </div>

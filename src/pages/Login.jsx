@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
-import Auth from "./Auth";
+import {Auth} from "../context/AuthContext";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
   let navigate = useNavigate();
 
-  // let {registerUsers,loggedInUser,setLoggedInUser} = useContext(Auth)
+  let {registerUsers,loggedInUser,setLoggedInUser} = useContext(Auth)
   
 
   let {
@@ -27,7 +27,7 @@ const Login = () => {
      }
      else{
       setLoggedInUser(user)
-      navigate("/home")
+      navigate("/")
       console.log("log-in-page wala",loggedInUser)
       localStorage.setItem("log user",JSON.stringify(user))
      toast.success("user logged in succsessfully") 
@@ -87,7 +87,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#0056A4] text-white font-medium py-2.5 rounded-lg hover:bg-blue-800 transition-colors mt-2"
+            className="cursor-pointer w-full bg-[#0056A4] text-white font-medium py-2.5 rounded-lg hover:bg-blue-800 transition-colors mt-2"
           >
             Sign In
           </button>

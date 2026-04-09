@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
-import Blog from "../pages/Blog";
 import Auth from "../pages/Auth";
 import AppLayout from "../pages/AppLayout";
 import Login from "../pages/Login";
 import Register from "../pages/register";
+import BlogDetails from "../pages/BlogDetails";
+import CreateArticle from "../pages/CreateArticle";
 
 const AppRoutes = () => {
   const routes = createBrowserRouter([
@@ -23,8 +24,12 @@ const AppRoutes = () => {
           element: <Dashboard />,
         },
         {
+          path: "/dashboard/new",
+          element: <CreateArticle />,
+        },
+        {
           path: "/blog/:id",
-          element: <Blog />,
+          element: <BlogDetails />,
         },
         {
           path: "/auth",

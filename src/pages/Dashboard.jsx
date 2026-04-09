@@ -1,8 +1,9 @@
-import React from "react";
-import Navbar from "../components/Navbar";
+import { Outlet, useNavigate } from "react-router";
+
 
 const Dashboard = () => {
 
+  let navigate = useNavigate()
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -12,10 +13,13 @@ const Dashboard = () => {
           <div>
             <h1 className="text-4xl font-bold text-gray-900">Dashboard</h1>
             <p className="text-gray-500 mt-1">
-              Manage your articles, Sumit kumar
+              Manage your articles
             </p>
           </div>
-          <button className="bg-[#0056A4] text-white px-6 py-2 rounded-lg font-medium hover:hover:bg-[#1c7bd4] cursor-pointer transition flex items-center gap-2">
+          <button
+           className="bg-[#0056A4] text-white px-6 py-2 rounded-lg font-medium hover:hover:bg-[#1c7bd4] cursor-pointer transition flex items-center gap-2"
+           onClick={()=>navigate('/dashboard/new')}
+           >
             <span className="text-xl">+</span> New Article
           </button>
         </div>
@@ -73,6 +77,7 @@ const Dashboard = () => {
       </main>
     </div>
   );
+  <Outlet />
 };
 
 export default Dashboard;
