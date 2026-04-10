@@ -16,7 +16,7 @@ const Home = () => {
         engineering from passionate writers.
       </p>
 
-      <div className="px-[10em] justify-center ">
+      {articleList ? (<div className="px-[10em] justify-center ">
         <h3 className="mt-10 font-semibold text-2xl">Latest Articles</h3>
 
       <div className="mt-6 flex flex-wrap gap-8 ">
@@ -24,7 +24,8 @@ const Home = () => {
            <BlogCard key={e.id}  info={e}/>
            )}
       </div>
-      </div>
+      </div>) : (        <h3 className="mt-10 font-semibold text-2xl">No Articles plz Add</h3>
+)}
     </div>
   );
 };
