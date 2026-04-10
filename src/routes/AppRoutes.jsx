@@ -4,7 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Auth from "../pages/Auth";
 import AppLayout from "../pages/AppLayout";
 import Login from "../pages/Login";
-import Register from "../pages/register";
+import Register from "../pages/Register";
 import BlogDetails from "../pages/BlogDetails";
 import CreateArticle from "../pages/CreateArticle";
 
