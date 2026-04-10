@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
-import { Article } from "../context/ArticleData";
+import { Article } from "../context/BlogContext";
 import { nanoid } from "nanoid";
+import { Auth } from "../context/AuthContext";
 
 const CreateArticle = () => {
   const navigate = useNavigate();
-  let { articleInfo, setArticleInfo } = useContext(Article);
+  let { articleList, setArticleList } = useContext(Article);
+    let { loggedInUser } = useContext(Auth);
+  
   const {
     register,
     handleSubmit,
@@ -21,12 +24,12 @@ const CreateArticle = () => {
       month: "long",
       day: "numeric",
     });
+   const author = loggedInUser.name;
+    const articleWithId = { ...data, id: id, date: date, author: author };
 
-    const articleWithId = { ...data, id: id, date: date };
+    const newArticleList = [...articleList, articleWithId];
 
-    const newArticleList = [...articleInfo, articleWithId];
-
-    setArticleInfo(newArticleList);
+    setArticleList(newArticleList);
     localStorage.setItem("article info", JSON.stringify(newArticleList));
 
     reset();

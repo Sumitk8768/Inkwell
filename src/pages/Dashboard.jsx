@@ -1,9 +1,11 @@
 import { Outlet, useNavigate } from "react-router";
-
+import { useContext } from "react";
+import { Article } from "../context/BlogContext";
 
 const Dashboard = () => {
 
   let navigate = useNavigate()
+    let { articleList, setArticleList } = useContext(Article);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -32,7 +34,7 @@ const Dashboard = () => {
             <h3 className="text-gray-500 font-medium mb-4 text-sm">
               Total Articles
             </h3>
-            <p className="text-5xl font-bold text-black">0</p>
+            <p className="text-5xl font-bold text-black">{articleList.length}</p>
           </div>
 
           {/* Published Card */}
@@ -40,7 +42,7 @@ const Dashboard = () => {
             <h3 className="text-gray-500 font-medium mb-4 text-sm">
               Published
             </h3>
-            <p className="text-5xl font-bold text-green-600">0</p>
+            <p className="text-5xl font-bold text-green-600">{articleList.length}</p>
           </div>
 
           {/* Drafts Card */}

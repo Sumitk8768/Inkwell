@@ -1,20 +1,25 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router';
-import { Article } from '../context/ArticleData';
+import { Article } from '../context/BlogContext';
+import { nanoid } from "nanoid";
+import { Auth } from '../context/AuthContext';
 
 const BlogDetails = () => {
   const navigate = useNavigate();
   let {blogArticle, setBlogArticle} = useContext(Article)
+  let { loggedInUser } = useContext(Auth);
 
-console.log("blog",blogArticle)
+  console.log(blogArticle)
 
   const blog = {
-    title: 'content',
-    author: "Sarah Chen",
-    date: "January 15, 2024",
+    title: blogArticle.title,
+    // author: loggedInUser.name,
+    author: "Sumit",
+    date: blogArticle.date,
     readTime: "1 min read",
-    tags: ["React", "JavaScript", "Web Development"],
-    content: "React Hooks revolutionized the way we write React components..."
+    tags: (blogArticle.tags).trim().split(' '),
+    excerpt: blogArticle.excerpt,
+    content: blogArticle.content,
   };
 
   return (
@@ -31,7 +36,7 @@ console.log("blog",blogArticle)
       {/* Tags */}
       <div className="flex gap-3 mb-6">
         {blog.tags.map((tag) => (
-          <span key={tag} className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
+          <span key={nanoid()} className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
             {tag}
           </span>
         ))}
@@ -61,37 +66,12 @@ console.log("blog",blogArticle)
       {/* Article Content */}
       <article className="prose prose-lg max-w-none">
         <p className="leading-relaxed mb-8">
-          React Hooks revolutionized the way we write React components. Introduced in React 16.8, 
-          Hooks allow you to use state and other React features without writing a class component.
+          {blog.excerpt}
         </p>
 
-        <h2 className="text-2xl font-bold mb-4 mt-10">Why Hooks?</h2>
+        {/* <h2 className="text-2xl font-bold mb-4 mt-10">Why Hooks?</h2> */}
         <p className="leading-relaxed mb-8">
-          Before Hooks, if you wanted to use state in a component, you had to use a class component. 
-          This led to complex lifecycle methods and hard-to-follow code.
-        </p>
-
-        <h2 className="text-2xl font-bold mb-4 mt-10">The useState Hook</h2>
-        <p className="leading-relaxed mb-4">
-          The most basic Hook is <code>useState</code>. It lets you add state to functional components:
-        </p>
-        
-        {/* Code Block */}
-        <div className="bg-gray-100 p-6 rounded-xl my-6 font-mono text-sm overflow-x-auto border border-gray-200">
-          <span className="text-blue-600">const</span> [count, setCount] = <span className="text-purple-600">useState</span>(<span className="text-orange-600">0</span>);
-        </div>
-
-        <h2 className="text-2xl font-bold mb-4 mt-10">The useEffect Hook</h2>
-        <p className="leading-relaxed mb-8">
-          <code>useEffect</code> lets you perform side effects in your components. It serves the same 
-          purpose as <code>componentDidMount</code>, <code>componentDidUpdate</code>, and 
-          <code>componentWillUnmount</code> combined.
-        </p>
-
-        <h2 className="text-2xl font-bold mb-4 mt-10">Conclusion</h2>
-        <p className="leading-relaxed mb-8">
-          Hooks make React code more readable, reusable, and easier to test. They represent the 
-          future of React development.
+         {blog.content}
         </p>
       </article>
     </div>

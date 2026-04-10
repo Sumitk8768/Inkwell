@@ -3,7 +3,7 @@ import { useState, createContext } from "react";
 export let Article = createContext();
 
 export let ArticleProvider = ({ children }) => {
-  const [articleInfo, setArticleInfo] = useState(
+  const [articleList, setArticleList] = useState(
     JSON.parse(localStorage.getItem("article info")) || [],
   );
 
@@ -13,7 +13,7 @@ export let ArticleProvider = ({ children }) => {
 
   return (
     <Article.Provider
-      value={{ articleInfo, setArticleInfo, blogArticle, setBlogArticle }}
+      value={{ articleList, setArticleList, blogArticle, setBlogArticle }}
     >
       {children}
     </Article.Provider>
