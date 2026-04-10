@@ -6,6 +6,8 @@ const Home = () => {
 
   let {articleList, setArticleList} = useContext(Article)
 
+  console.log(articleList)
+
   return (
     <div className="flex flex-col justify-center items-center ">
       <h1 className="text-5xl w-fit mx-auto font-bold mt-10">
@@ -16,7 +18,7 @@ const Home = () => {
         engineering from passionate writers.
       </p>
 
-      {articleList ? (<div className="px-[10em] justify-center ">
+      {(articleList[0]) ? (<div className="px-[10em] justify-center ">
         <h3 className="mt-10 font-semibold text-2xl">Latest Articles</h3>
 
       <div className="mt-6 flex flex-wrap gap-8 ">
@@ -24,7 +26,7 @@ const Home = () => {
            <BlogCard key={e.id}  info={e}/>
            )}
       </div>
-      </div>) : (        <h3 className="mt-10 font-semibold text-2xl">No Articles plz Add</h3>
+      </div>) : (<h3 className="mt-10 font-semibold text-2xl">No Articles</h3>
 )}
     </div>
   );
